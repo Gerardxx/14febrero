@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Made in Gerardxx.HTNL</title>
+
+<style>
+:root {
+    --primary: #ff4d6d;
+    --secondary: #ff8fa3;
+    --dark: #343a40;
+    --light: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #ffccd5, #ffc2d1);
+    overflow: hidden;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px 40px 20px 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    text-align: center;
+    width: 420px;
+    position: relative;
+}
+
+.card h1 {
+    color: var(--primary);
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+.dino {
+    width: 180px;
+    margin: 15px 0 25px 0;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    position: relative;
+    height: 80px;
+    align-items: center;
+}
+
+button {
+    padding: 12px 28px;
+    font-size: 16px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#yesBtn {
+    background-color: var(--primary);
+    color: var(--light);
+    font-weight: bold;
+}
+
+#yesBtn:hover {
+    background-color: #e63956;
+}
+
+#noBtn {
+    background-color: var(--dark);
+    color: var(--light);
+    position: relative;
+}
+
+/* FOOTER NUEVO */
+footer {
+    margin-top: 30px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+    font-size: 0.85rem;
+    color: #666;
+}
+
+footer span {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.success {
+    text-align: center;
+    color: white;
+    font-size: 2rem;
+    animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.heart {
+    position: absolute;
+    font-size: 20px;
+    animation: floatUp 4s linear infinite;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-600px); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card" id="card">
+    <h1>¿Quieres ser mi San Valentín? 🥺</h1>
+
+    <img 
+        class="dino"
+        src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExbng2bmhtYWZtaGRyaDFidjR2YXp6eWFhb2h5c2N3OWV3ajdjZ2QzMyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/8Og4UuBGsVhEEoSO0L/giphy.gif"
+        alt="Dinosaurio tierno"
+    >
+
+    <div class="buttons">
+        <button id="yesBtn">Sí 💕</button>
+        <button id="noBtn">No 👀</button>
+    </div>
+
+    <footer>
+        Hecho por Gerardxx
+    </footer>
+</div>
+
+<script>
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+
+let scaleSize = 1;
+
+noBtn.addEventListener("click", () => {
+    scaleSize += 0.15;
+    yesBtn.style.transform = `scale(${scaleSize})`;
+
+    const randomX = Math.random() * 150 - 75;
+    const randomY = Math.random() * 40 - 20;
+    noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+});
+
+yesBtn.addEventListener("click", () => {
+    document.body.innerHTML = `
+        <div class="success">
+            <h1>¡Sabía que dirías que sí!</h1>
+            <p style="font-size:1.3rem;">Prometo muchos abrazos, risas y aventuras contigo 💖</p>
+        </div>
+    `;
+    launchHearts();
+});
+
+function launchHearts() {
+    setInterval(() => {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "💖";
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        heart.style.bottom = "0px";
+        heart.style.fontSize = (Math.random() * 20 + 20) + "px";
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 4000);
+    }, 300);
+}
+</script>
+
+</body>
+</html>
